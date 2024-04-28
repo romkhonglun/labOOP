@@ -1,5 +1,5 @@
-package Lab2;
-
+package hust.soict.dsai.aims.disc;
+import hust.soict.dsai.aims.cart.Cart;
 public class DigitalVideoDisc {
     private String title;
     private String category;
@@ -8,19 +8,12 @@ public class DigitalVideoDisc {
     private float cost;
     private static int nbDigitalVideoDiscs = 0;
     private int id;
-    public DigitalVideoDisc(String title, String category, String directory, int length, float cost){
-        this.title = title;
-        this.category = category;
-        this. directory = directory;
-        this.length = length;
-        this.cost = cost;
-    }
 
-    public DigitalVideoDisc(String title){
+    public DigitalVideoDisc(String title) {
         this.title = title;
     }
 
-    public DigitalVideoDisc(String title, String category, float cost){
+    public DigitalVideoDisc(String title, String category, float cost) {
         this.title = title;
         this.category = category;
         this.cost = cost;
@@ -28,42 +21,44 @@ public class DigitalVideoDisc {
         this.id = nbDigitalVideoDiscs;
     }
 
-    public DigitalVideoDisc(String title, String category, String directory, float cost){
+    public DigitalVideoDisc(String title, String category, String directory, float cost) {
         this.title = title;
         this.category = category;
-        this. directory = directory;
+        this.directory = directory;
         this.cost = cost;
         nbDigitalVideoDiscs++;
         this.id = nbDigitalVideoDiscs;
     }
-    public DigitalVideoDisc(String title, String category, String directory,int length, float cost){
+
+    public DigitalVideoDisc(String title, String category, String directory, int length, float cost) {
         this.title = title;
         this.category = category;
-        this. directory = directory;
+        this.directory = directory;
         this.length = length;
         this.cost = cost;
         nbDigitalVideoDiscs++;
         this.id = nbDigitalVideoDiscs;
     }
-    public String getTitle(){
+
+    public String getTitle() {
         return this.title;
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return this.category;
     }
 
-    public String getDirectory(){
-        return this.directory;
-    }
-
-    public int getLength(){
+    public int getLength() {
         return this.length;
     }
 
-    public float getCost(){
+    public float getCost() {
         return this.cost;
     }
 
-    
+    public String getDirector() {
+        return this.directory;}
+
+    public void setTitle(String title) {
+        this.title = title;}
 }
