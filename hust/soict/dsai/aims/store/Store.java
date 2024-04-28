@@ -37,8 +37,4 @@ public class Store {
             System.out.println("The disc " + '"' + disc.getTitle() + '"' + " has been removed.");
         }
     }
-
-    public void addMedia(DigitalVideoDisc dvdNew) {
-
-    }
 }
