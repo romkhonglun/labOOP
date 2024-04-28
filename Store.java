@@ -1,3 +1,5 @@
+package hust.soict.dsai.aims.store;
+import hust.soict.dsai.aims.disc.DigitalVideoDisc;
 import java.util.Arrays;
 
 public class Store {
@@ -34,4 +36,7 @@ public class Store {
         }
     }
 
+    public void addMedia(DigitalVideoDisc dvdNew) {
+
+    }
 }
