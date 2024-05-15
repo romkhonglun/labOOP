@@ -72,19 +72,6 @@ public class Cart {
         return res;
     }
 
-    public boolean isMatch(String name) {
-        for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i].getTitle() == name) return true;
-        }
-        return false;
-    }
-    public void search(String name) {
-        if(isMatch(name) == true) {
-            System.out.println("Item is already in cart!");
-        } else {
-            System.out.println("Not found");
-        }
-    }
 
     public void print() {
         for(int i = 0; i < qtyOrdered; i++) {
