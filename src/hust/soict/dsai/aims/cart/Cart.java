@@ -1,14 +1,12 @@
-package Lab2.src.hust.soict.dsai.aims.cart;
+package hust.soict.dsai.aims.cart;
 
 import hust.soict.dsai.aims.media.Media;
-
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
     public static int MAX_NUMBERS_ORDERED = 20;
-    private List<Media> itemsOrdered = new ArrayList<>();
-
+    private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
     public void addMedia(Media... media) {
         if (itemsOrdered.size() + media.length > MAX_NUMBERS_ORDERED) {
             System.out.println("The cart is almost full");
@@ -31,7 +29,7 @@ public class Cart {
             total += media.getCost();        }
         return total;    }
 
-    public List<Media> getItemsOrdered() {
+    public ObservableList<Media> getItemsOrdered() {
         return itemsOrdered;
     }
 

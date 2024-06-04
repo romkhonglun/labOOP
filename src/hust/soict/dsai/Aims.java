@@ -1,10 +1,14 @@
-package Lab2.src.hust.soict.dsai;
+package hust.soict.dsai;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
+import hust.soict.dsai.aims.media.Book;
+import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.store.Store;
 
+import javax.swing.*;
 import java.util.*;
 
 public class Aims {
@@ -27,7 +31,7 @@ public class Aims {
                 storeMenu();
                 break;
             case 2:
-                udpateStore();
+                updateStore();
                 break;
             case 3:
                 cartMenu();
@@ -109,12 +113,53 @@ public class Aims {
     public static void playMedia() {
         System.out.println("Enter the title of the media: ");
         Scanner sc = new Scanner(System.in);
-        DigitalVideoDisc dvd = new DigitalVideoDisc(sc.nextLine());
-        dvd.play();
+        String title = sc.nextLine();
+        // Search for the media in the store
+        Media mediaToPlay = null;
+        for (Media media : store.getItemsInStore()) {
+            if (media.getTitle().equals(title)) {
+                mediaToPlay = media;
+                break;
+            }
+        }
+        // If the media was found, check its type
+        if (mediaToPlay != null) {
+            if (mediaToPlay instanceof Book) {
+                System.out.println("Cannot play a book.");
+            } else if (mediaToPlay instanceof CompactDisc) {
+                try {
+                    ((CompactDisc) mediaToPlay).play();
+                } catch (PlayerException e) {
+                    System.err.println("ERROR: Cannot play media!");
+                    System.err.println("Reason: " + e.getMessage());
+                    e.printStackTrace();
+                    // Display a dialog box to the user with the content of the exception
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+            } else if (mediaToPlay instanceof DigitalVideoDisc) {
+                try {
+                    ((DigitalVideoDisc) mediaToPlay).play();
+                } catch (PlayerException e) {
+                    System.err.println("ERROR: Cannot play media!");
+                    System.err.println("Reason: " + e.getMessage());
+                    e.printStackTrace();
+                    // Display a dialog box to the user with the content of the exception
+                    JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+            } else {
+                System.out.println("Unknown media type.");
+            }
+        } else {
+            System.out.println("Media with the given title was not found.");
+        }
+
         sc.close();
     }
 
-    public static void udpateStore() {
+
+    public static void updateStore() {
         System.out.println("Options: ");
         System.out.println("--------------------------------");
         System.out.println("1. Add a media to store");
@@ -297,6 +342,7 @@ public class Aims {
         System.out.println(cart.toString());
     }
     public static void main (String[]args){
+
         showMenu();
     }
 }

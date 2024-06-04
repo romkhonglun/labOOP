@@ -1,4 +1,4 @@
-package Lab2.src.hust.soict.dsai.aims.media;
+package hust.soict.dsai.aims.media;
 
 public abstract class Disc extends Media {
     private int length;

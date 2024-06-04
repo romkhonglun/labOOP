@@ -1,26 +1,26 @@
-package Lab2.src.hust.soict.dsai.aims.store;
+package hust.soict.dsai.aims.store;
 
 import hust.soict.dsai.aims.media.Media;
 
+import javax.naming.LimitExceededException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Store {
     public static final int MAX_NUMBERS_STORE = 1000;
-    private List<Media> itemsInStore = new ArrayList<>();
+    private ArrayList<Media> itemsInStore = new ArrayList<>();
 
-    public List<Media> getItemsInStore() {
+    public ArrayList<Media> getItemsInStore() {
         return itemsInStore;
     }
     private int counting = 0;
 
-    public void addMedia(Media media) {
+    public void addMedia(Media media) throws LimitExceededException {
         if (counting < MAX_NUMBERS_STORE) {
             itemsInStore.add(media);
             counting++;
             System.out.println("The media has been added.");
         } else {
-            System.out.println("No more space in store.");
+            throw new LimitExceededException("The store has reached its limit.");
         }
     }
 

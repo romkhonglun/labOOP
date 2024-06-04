@@ -1,4 +1,4 @@
-package Lab2.src.hust.soict.dsai.aims.media;
+package hust.soict.dsai.aims.media;
 import java.util.Comparator;
 public abstract class Media {
     private int id;
@@ -60,14 +60,22 @@ public abstract class Media {
     }
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
+        try{
+            if (this == obj) {
+                return true;
+            }
+            if (obj instanceof Media) {
+                return false;
+         }
+        Media media = (Media) obj;
+        return media.getTitle().equals(this.getTitle());
+        } catch(NullPointerException e) {
+            System.out.println("Error: NullPointerException");
+            return false;
+        }catch(ClassCastException e) {
+            System.out.println("Error: ClassCastException");
             return false;
         }
-        Media media = (Media) obj;
-        return title.equals(media.title);
     }
     @Override
     public String toString(){
@@ -83,6 +91,7 @@ public abstract class Media {
         }
         return res;
     }
+
 }
 
 
