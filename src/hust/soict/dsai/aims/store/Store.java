@@ -6,7 +6,7 @@ import javax.naming.LimitExceededException;
 import java.util.ArrayList;
 
 public class Store {
-    public static final int MAX_NUMBERS_STORE = 1000;
+    public static final int MAX_NUMBERS_STORE = 100000000;
     private ArrayList<Media> itemsInStore = new ArrayList<>();
 
     public ArrayList<Media> getItemsInStore() {

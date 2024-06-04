@@ -5,7 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Cart {
-    public static int MAX_NUMBERS_ORDERED = 20;
+    public static int MAX_NUMBERS_ORDERED = 100;
     private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
     public void addMedia(Media... media) {
         if (itemsOrdered.size() + media.length > MAX_NUMBERS_ORDERED) {

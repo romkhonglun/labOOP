@@ -2,6 +2,8 @@ package hust.soict.dsai.aims.screen;
 
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.store.Store;
+
+import javax.naming.LimitExceededException;
 import javax.swing.*;
 import java.awt.*;
 
@@ -29,7 +31,11 @@ public class AddBookScreen extends JFrame {
         submitButton.addActionListener(e -> {
             String title = titleField.getText();
             // Add a new book to the store
-            store.addMedia(new Book(title, 0.0f));
+            try {
+                store.addMedia(new Book(title, 0.0f));
+            } catch (LimitExceededException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         center.add(new JLabel("Title:"));

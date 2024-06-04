@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.screen;
 
 import hust.soict.dsai.Aims;
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
 import javafx.beans.property.SimpleStringProperty;
@@ -79,9 +80,15 @@ public class CartScreenController {
             }
         });
         lblTotalCost.textProperty().bind(totalcoststring);
-        btnPlay.setOnAction(e -> btnPlayPressed(new MouseEvent(MouseEvent.MOUSE_CLICKED, 0,
-                0, 0, 0, MouseButton.PRIMARY, 1, true, true, true, true,
-                true, true, true, true, true, true, null)));
+        btnPlay.setOnAction(e -> {
+            try {
+                btnPlayPressed(new MouseEvent(MouseEvent.MOUSE_CLICKED, 0,
+                        0, 0, 0, MouseButton.PRIMARY, 1, true, true, true, true,
+                        true, true, true, true, true, true, null));
+            } catch (PlayerException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         btnRemove.setOnAction(e -> btnRemovePressed(new MouseEvent(MouseEvent.MOUSE_CLICKED, 0,
         0, 0, 0, MouseButton.PRIMARY, 1, true, true, true, true,
                 true, true, true, true, true, true, null)));
@@ -123,7 +130,7 @@ public class CartScreenController {
         alert.showAndWait();
     }
     @FXML
-    void btnPlayPressed(MouseEvent event) {
+    void btnPlayPressed(MouseEvent event) throws PlayerException {
         Media media = tblMedia.getSelectionModel().getSelectedItem();
         if (media instanceof Playable) {
             ((Playable) media).play();
